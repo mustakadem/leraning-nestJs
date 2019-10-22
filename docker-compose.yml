@@ -7,11 +7,11 @@ services:
       - redis
     volumes:
       - ./:/app
-    working_dir: /
+    working_dir: /app
     ports:
       - '3000:3000'
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=prod
 
   redis:
     image: redis:5-alpine
@@ -19,11 +19,13 @@ services:
   postgres:
     image: postgres:11.2-alpine
     environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: magma-room
+        POSTGRES_PASSWORD: postgres,
+        POSTGRES_USER: postgres,
+        POSTGRES_DB: magma-rooms
     volumes:
       - ./pgdata:/var/libpostgresql/data
     ports:
       - '5432:5432'
+volumes:
+  dbvolume:
 
